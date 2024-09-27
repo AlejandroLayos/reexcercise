@@ -67,12 +67,13 @@ export default {
   methods: {
     async updateConfig() {
       try {
+        const apiUrl = import.meta.env.VITE_API_BASE_URL;
         const configArray = this.configArray.split(',').map(item => parseInt(item.trim(), 10));
         if (configArray.length === 0 || configArray.some(isNaN)) {
           alert('Config array cannot be empty');
           return;
         }
-        const response = await axios.put('http://localhost:8080/packs/config', {
+        const response = await axios.put(`${apiUrl}/packs/config`, {
           packs_config: configArray,
         });
         if (response.status === 200) {
@@ -89,7 +90,8 @@ export default {
     },
     async getItems() {
       try {
-        const response = await axios.get(`http://localhost:8080/packs/${this.itemId}`);
+        const apiUrl = import.meta.env.VITE_API_BASE_URL;
+        const response = await axios.get(`${apiUrl}/packs/${this.itemId}`);
         this.items = response.data;
       } catch (error) {
         console.error('Error fetching items:', error);
