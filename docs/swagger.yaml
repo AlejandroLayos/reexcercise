@@ -1,0 +1,62 @@
+basePath: /packs
+definitions:
+  domain.Config:
+    properties:
+      packs_config:
+        items:
+          type: integer
+        type: array
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This server implements a simple API for a PARTNERS test.
+  title: RE PARTNERS API
+  version: "1.0"
+paths:
+  /{items}:
+    get:
+      consumes:
+      - application/json
+      description: retrieve a number of packs
+      operationId: get-items
+      parameters:
+      - description: Items
+        in: path
+        name: items
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: bad request
+        "500":
+          description: internal server error
+      summary: Retrieve a number of packs
+  /config:
+    put:
+      consumes:
+      - application/json
+      description: update the config
+      operationId: update-config
+      parameters:
+      - description: Config
+        in: body
+        name: config
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Config'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: bad request
+        "500":
+          description: internal server error
+      summary: Update the config
+swagger: "2.0"
