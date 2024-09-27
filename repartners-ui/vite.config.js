@@ -18,7 +18,7 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    port: 5173,
+    port: 4173,
     proxy: {
       '/packs': {
         target: 'http://13.60.190.214:8080',
